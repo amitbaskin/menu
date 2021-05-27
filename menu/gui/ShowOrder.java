@@ -38,7 +38,7 @@ public abstract class ShowOrder {
             id = JOptionPane.showInputDialog(ID_REQUEST_MSG);
             if (id == null) return EMPTY;
         }
-        while (ConfirmClientDetails.confirmId(id, gui) == -1);
+        while (ConfirmClientDetails.confirmId(id, gui) == ConfirmClientDetails.ConfirmationCode.ERROR);
         return name + id;
     }
 
@@ -58,7 +58,6 @@ public abstract class ShowOrder {
                 str.append(String.format(ITEM_PRICE_MSG, name, amount, price, sm));
             }
         }
-//        str.append(String.format(TOTAL_PRICE_MSG, gui.getTotalOrderPrice()));
         str.append(String.format(TOTAL_PRICE_MSG, TOTAL_ORDER_PRICE));
     }
 

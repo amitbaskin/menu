@@ -2,29 +2,40 @@ package menu.gui;
 
 import javax.swing.*;
 
-abstract class ConfirmClientDetails {
+/**
+ * An abstract class for confirming the details provided by the user
+ */
+public abstract class ConfirmClientDetails {
     static final int ID_LEN = 9;
     static final int NAME_MIN_LEN = 2;
     private static final String INVALID_ID_MSG = "Invalid id!";
     private static final String INVALID_NAME_MSG = "Invalid Name!";
     private static final String MSG_TITLE = "ERROR";
 
-    static int confirmId(String id, Gui gui) {
-        if (id == null) return 0;
+    public enum ConfirmationCode {GOT_NULL, ERROR, CONFIRMED}
+
+    /**
+     * Confirm the client's id
+     * @param id The id of the client
+     * @param gui The gui for the menu
+     * @return The confirmation code
+     */
+    public static ConfirmationCode confirmId(String id, Gui gui) {
+        if (id == null) return ConfirmationCode.GOT_NULL;
         if (id.length() != ID_LEN) {
             JOptionPane.showMessageDialog(gui.getFrame(), INVALID_ID_MSG, MSG_TITLE,
                     JOptionPane.ERROR_MESSAGE);
-            return -1;
+            return ConfirmationCode.ERROR;
         }
         for (int i = 0; i < id.length(); i++) {
             try {
                 Integer.parseInt(String.valueOf(id.charAt(i)));
             }
             catch (NumberFormatException e) {
-                return -1;
+                return ConfirmationCode.ERROR;
             }
         }
-        return 1;
+        return ConfirmationCode.CONFIRMED;
     }
 
     static int confirmName(String name, Gui gui) {
