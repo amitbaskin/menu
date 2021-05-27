@@ -1,0 +1,111 @@
+Shephard’s Pie
+Main
+79
+Pot Pie
+Main
+69
+Meatloaf
+Main
+77
+Pork chops
+Main
+149
+sausage & potato
+Main
+59
+Fish & chips
+Main
+49
+Kabobs
+Main
+70
+Meatballs & rice
+Main
+65
+Sloppy Joes
+Main
+89
+Hot dogs
+Main
+59
+Burgers
+Main
+66
+Steak & sides
+Main
+110
+Meat & Cheese
+Starter
+56
+Garlic Bread
+Starter
+27
+Zucchini Chips
+Starter
+25
+Spinach Bites
+Starter
+34
+Raspberry Brie
+Starter
+43
+Cheese Bites
+Starter
+53
+Lime Shrimp
+Starter
+57
+Tomato Bites
+Starter
+31
+Soup
+Starter
+27
+Meat sandwiches
+Starter
+22
+Baked potatoes
+Starter
+24
+Pasta
+Starter
+31
+Tacos
+Starter
+43
+Coca-Cola
+Drink
+7
+Sprite
+Drink
+7
+Dr Pepper
+Drink
+8
+Fanta
+Drink
+7
+Lilt
+Drink
+9
+Powerade
+Drink
+10
+Oasis
+Drink
+11
+Schweppes
+Drink
+13
+Bell's Ale
+Drink
+21
+Russian River
+Drink
+27
+Sierra Nevada
+Drink
+22
+The Alchemist
+Drink
+23
