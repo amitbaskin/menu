@@ -2,9 +2,17 @@ package menu.components;
 
 import javax.swing.*;
 
-class MenuCheckBox extends JCheckBox {
+/**
+ * Check box for selecting an item in the menu
+ */
+public class MenuCheckBox extends JCheckBox {
     private static final String SEPARATOR = "\t";
-    MenuCheckBox(String name, MenuItem item){
-        super(String.format("%s%s%s", name, SEPARATOR, item.getPrice()));
+
+    /**
+     * Create a new checkbox
+     * @param item The item
+     */
+    public MenuCheckBox(MenuItem item){
+        super(String.format("%s%s%s", item.getName(), SEPARATOR, item.getPrice()));
     }
 }

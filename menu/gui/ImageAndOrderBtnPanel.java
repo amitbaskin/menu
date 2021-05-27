@@ -8,10 +8,10 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-class ImageAndOrderBtn extends JPanel {
+class ImageAndOrderBtnPanel extends JPanel {
     private static final String IMAGE_FILE_NAME = "food.jpg";
 
-    ImageAndOrderBtn(Gui gui){
+    ImageAndOrderBtnPanel(Gui gui){
         super();
         JLabel imageLabel = new JLabel(new ImageIcon(Paths.get(System.getProperty("user.dir"),
                 IMAGE_FILE_NAME).toString()));

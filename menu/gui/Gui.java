@@ -70,7 +70,7 @@ public class Gui {
 
     public void initialize(){
         frame.add(new MainPanel(this));
-        frame.add(new ImageAndOrderBtn(this));
+        frame.add(new ImageAndOrderBtnPanel(this));
         OrderUtils.initializeOrderMap(this);
         frame.setSize(FRAME_SIZE, FRAME_SIZE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

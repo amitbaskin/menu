@@ -22,18 +22,16 @@ class SectionPanel extends JPanel {
         setBorder(border);
         setBackground(BACKGROUND_COLOR);
 
-        String name;
         for (menu.components.MenuItem item : items){
-            name = item.getName();
-            add(getMenuCheckBox(name, item, gui));
-            add(getMenuComboBox(name, gui));
+            add(getMenuCheckBox(item, gui));
+            add(getMenuComboBox(item.getName(), gui));
         }
     }
 
-    private static JCheckBox getMenuCheckBox(String name, MenuItem item, Gui gui) {
-        JCheckBox box = new MenuCheckBox(name, item);
+    private static JCheckBox getMenuCheckBox(MenuItem item, Gui gui) {
+        JCheckBox box = new MenuCheckBox(item);
         gui.addCheckBox(box);
-        box.addItemListener(new MenuCheckBoxListener(name, gui));
+        box.addItemListener(new MenuCheckBoxListener(item.getName(), gui));
         return box;
     }
 
