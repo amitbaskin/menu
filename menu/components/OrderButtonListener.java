@@ -1,7 +1,7 @@
 package menu.components;
 
 import menu.gui.Gui;
-import menu.gui.ShowOrder;
+import menu.gui.DisplayOrder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,6 +23,6 @@ public class OrderButtonListener implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        ShowOrder.showOrder(gui);
+        DisplayOrder.displayOrder(gui);
     }
 }

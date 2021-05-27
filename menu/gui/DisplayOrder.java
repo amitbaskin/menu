@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import static java.lang.System.exit;
 
-public abstract class ShowOrder {
+/**
+ * An abstract class for displaying the order to the user
+ */
+public abstract class DisplayOrder {
     private static final String NAME_REQUEST_MSG = String.format("Please enter your name, only alphabetic " +
         "characters, at least %d:", ConfirmClientDetails.NAME_MIN_LEN);
     private static final String ID_REQUEST_MSG = String.format("Please enter your id number, exactly %d " +
@@ -26,6 +28,11 @@ public abstract class ShowOrder {
     private static final int ORDER_FRAME_SIZE = 20;
     private static int TOTAL_ORDER_PRICE = 0;
 
+    /**
+     * Getting the user's details
+     * @param gui The gui for the menu
+     * @return The name of the file in which to save the order in
+     */
     private static String getClientDetails(Gui gui) {
         String name;
         do {
@@ -42,7 +49,12 @@ public abstract class ShowOrder {
         return name + id;
     }
 
-    private static void buildOrderMsg(StringBuilder str, Gui gui) {
+    /**
+     * Constructs the message to display to the user with the order details
+     * @param stringBuilder The sting-builder to construct the message in
+     * @param gui The gui for the menu
+     */
+    private static void ConstructOrderMsg(StringBuilder stringBuilder, Gui gui) {
         Integer[] values;
         int amount;
         int price;
@@ -55,12 +67,17 @@ public abstract class ShowOrder {
                 price = values[OrderUtils.PRICE_INDEX];
                 sm = amount * price;
                 TOTAL_ORDER_PRICE += sm;
-                str.append(String.format(ITEM_PRICE_MSG, name, amount, price, sm));
+                stringBuilder.append(String.format(ITEM_PRICE_MSG, name, amount, price, sm));
             }
         }
-        str.append(String.format(TOTAL_PRICE_MSG, TOTAL_ORDER_PRICE));
+        stringBuilder.append(String.format(TOTAL_PRICE_MSG, TOTAL_ORDER_PRICE));
     }
 
+    /**
+     * Gets a scrolling pane for the order display
+     * @param order The order
+     * @return The scrolling pane
+     */
     private static JScrollPane getOrderScrollPane(String order) {
         JTextArea textArea = new JTextArea(ORDER_FRAME_SIZE, ORDER_FRAME_SIZE);
         textArea.setText(order);
@@ -68,6 +85,12 @@ public abstract class ShowOrder {
         return new JScrollPane(textArea);
     }
 
+    /**
+     * Get the selection from the user regarding the confirmation of his order
+     * @param order The order
+     * @param gui The gui for the menu
+     * @return The selection
+     */
     private static int getOrderConfirmationSelection(String order, Gui gui) {
         JScrollPane orderScrollPane = getOrderScrollPane(order);
         return JOptionPane.showOptionDialog(gui.getFrame(), orderScrollPane, CONFIRMATION_TITLE,
@@ -75,6 +98,13 @@ public abstract class ShowOrder {
                 new Object[]{CONFIRMATION_OPTION, CHANGE_OPTION, REVOKE_OPTION}, CONFIRMATION_OPTION);
     }
 
+    /**
+     * Handles the scenario where the user selects YES during confirmation
+     * @param selection The selection of the user
+     * @param order The order
+     * @param gui The gui for the menu
+     * @throws IOException In case there's a problem creating the new file
+     */
     private static void checkForYesOptionScenario(int selection, String order, Gui gui) throws IOException {
         if (selection == JOptionPane.YES_OPTION) {
             String fileName = getClientDetails(gui);
@@ -87,17 +117,25 @@ public abstract class ShowOrder {
         }
     }
 
+    /**
+     * Handles the scenario where the user selects NO during confirmation
+     * @param selection The user's selection
+     * @param gui The gui for the menu
+     */
     private static void checkForNoOptionScenario(int selection, Gui gui) {
         if (selection == JOptionPane.CANCEL_OPTION) {
             GuiReset.resetGUi(gui);
         }
     }
 
-    public static void showOrder(Gui gui) {
+    /**
+     * Display the order
+     * @param gui The gui for the menu
+     */
+    public static void displayOrder(Gui gui) {
         StringBuilder str = new StringBuilder();
-        buildOrderMsg(str, gui);
+        ConstructOrderMsg(str, gui);
         String order = String.valueOf(str);
-//        if (order.equals(String.format(TOTAL_PRICE_MSG, 0))) {
         if (TOTAL_ORDER_PRICE == 0) {
             JOptionPane.showMessageDialog(gui.getFrame(), NO_SELECTION_MSG);
             return;
